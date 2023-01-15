@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">GitHub Searcher</string>
+
+    <string name="contentDescription">Content Description</string>
+    <string name="loginHead">Sign In</string>
+    <string name="username">UserName</string>
+    <string name="password">Password</string>
+    <string name="loginButton">Submit</string>
+    <string name="apptitle">Github Searcher</string>
+
+</resources>

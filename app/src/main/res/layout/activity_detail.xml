@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.example.catalistapplication.views.details.DetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".views.details.DetailActivity">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/detailImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="@dimen/margin_40"
+            android:layout_marginStart="@dimen/margin_24"
+            android:contentDescription="@string/contentDescription"
+            app:squareImageFromUrl='@{viewModel.userDetail.avatar_url??""}'
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/image_rounded_corner"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/detailName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginTop="@dimen/margin_40"
+            app:capitalizeText='@{viewModel.userDetail.login??""}'
+            android:visibility="@{viewModel.userDetail.login!=null?View.VISIBLE:View.GONE}"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="@dimen/txt_16"
+            app:fontFamily="@font/poppins_regular"
+            app:layout_constraintStart_toEndOf="@id/detailImage"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/detailEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginTop="1dp"
+            android:text="@{viewModel.userDetail.email}"
+            android:visibility="@{viewModel.userDetail.email!=null?View.VISIBLE:View.GONE}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_14"
+            app:fontFamily="@font/poppins_regular"
+            app:layout_constraintStart_toEndOf="@id/detailImage"
+            app:layout_constraintTop_toBottomOf="@id/detailName" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/detailLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginTop="1dp"
+            app:capitalizeText='@{viewModel.userDetail.location??""}'
+            android:visibility="@{viewModel.userDetail.location!=null?View.VISIBLE:View.GONE}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_14"
+            app:fontFamily="@font/poppins_regular"
+            app:layout_constraintStart_toEndOf="@id/detailImage"
+            app:layout_constraintTop_toBottomOf="@id/detailEmail" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/detailJoinDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginTop="1dp"
+            app:stringtoDate='@{viewModel.userDetail.created_at??""}'
+            android:visibility="@{viewModel.userDetail.created_at!=null?View.VISIBLE:View.GONE}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_14"
+            app:fontFamily="@font/poppins_regular"
+            app:layout_constraintStart_toEndOf="@id/detailImage"
+            app:layout_constraintTop_toBottomOf="@id/detailLocation" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/detailFollowers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginTop="1dp"
+            android:text='@{"Followers : "+viewModel.userDetail.followers}'
+            android:visibility="@{viewModel.userDetail.followers!=null?View.VISIBLE:View.GONE}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_14"
+            app:fontFamily="@font/poppins_regular"
+            app:layout_constraintStart_toEndOf="@id/detailImage"
+            app:layout_constraintTop_toBottomOf="@id/detailJoinDate" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/detailFollowing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_12"
+            android:layout_marginTop="1dp"
+            android:text='@{"Following : "+viewModel.userDetail.following}'
+            android:visibility="@{viewModel.userDetail.following!=null?View.VISIBLE:View.GONE}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_14"
+            app:fontFamily="@font/poppins_regular"
+            app:layout_constraintStart_toEndOf="@id/detailImage"
+            app:layout_constraintTop_toBottomOf="@id/detailFollowers" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/detailSubTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_24"
+            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginEnd="@dimen/margin_24"
+            app:capitalizeText='@{viewModel.userDetail.bio??""}'
+            android:visibility="@{viewModel.userDetail.bio!=null?View.VISIBLE:View.GONE}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/txt_12"
+            app:fontFamily="@font/poppins_regular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailImage" />
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/detailSearch"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="@dimen/margin_24"
+            android:layout_marginTop="@dimen/margin_24"
+            android:layout_marginEnd="@dimen/margin_24"
+            android:background="@drawable/view_border"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailSubTitle"
+            android:theme="@style/SearchViewStyle"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/detailRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingStart="@dimen/padding_19"
+            android:paddingTop="@dimen/padding_16"
+            android:paddingEnd="@dimen/padding_19"
+            android:paddingBottom="@dimen/padding_16"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailSearch"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/transparent_bg"
+            android:clickable="true"
+            android:focusable="true"
+            android:visibility="@{viewModel.showProgress?View.VISIBLE:View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/detailSearch">
+
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:indeterminateDrawable="@drawable/custom_progress"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
