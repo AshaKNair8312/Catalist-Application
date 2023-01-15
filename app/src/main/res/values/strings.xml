@@ -8,4 +8,6 @@
     <string name="loginButton">Submit</string>
     <string name="apptitle">Github Searcher</string>
 
+    <string name="API_ACCESS_TOKEN">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</string>
+
 </resources>
